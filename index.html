@@ -46,6 +46,28 @@ html, body {
 .bubble { position: absolute; bottom: -50px; background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 50%; animation: bubbleUp 12s infinite ease-in; }
 @keyframes bubbleUp { 0% { transform: translateY(0); opacity: 0; } 100% { transform: translateY(-120vh); opacity: 0; } }
 
+  /* バブルの見た目とアニメーション */
+#bubble-container { 
+  position: fixed; 
+  inset: 0; 
+  z-index: -1; /* 背景に配置 */
+  pointer-events: none; /* 当たり判定を無効化 */
+  overflow: hidden;
+}
+.bubble { 
+  position: absolute; 
+  bottom: -100px; 
+  background: rgba(255, 255, 255, 0.3); 
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+  border-radius: 50%; 
+  animation: bubbleUp 15s infinite ease-in; 
+}
+@keyframes bubbleUp { 
+  0% { transform: translateY(0) scale(1); opacity: 0; } 
+  20% { opacity: 0.5; }
+  100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } 
+}
+
 .xp-window { position: fixed; width: 220px; background: #f1f1f1; border: 2px solid #0055ea; border-radius: 8px 8px 0 0; box-shadow: 5px 5px 15px rgba(0,0,0,0.3); z-index: 1500; cursor: move; touch-action: none; }
 .title-bar { background: linear-gradient(to bottom, #0058ee 0%, #3593ff 100%); height: 32px; display: flex; align-items: center; justify-content: space-between; padding: 0 10px; color: white; font-weight: bold; pointer-events: none; }
 .close-btn-area { pointer-events: auto; }
@@ -219,4 +241,20 @@ function handleGlobalClick(e) {
 function changeAvatar(input) { if (input.files && input.files[0]) { const reader = new FileReader(); reader.onload = (e) => { document.getElementById('avatar-target').innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;">`; }; reader.readAsDataURL(input.files[0]); } }
 </script>
 </body>
+  <div id="bubble-container"></div>
+<script>
+const bCont = document.getElementById('bubble-container');
+for(let i=0; i<20; i++) {
+  const b = document.createElement('div');
+  b.className = 'bubble';
+  const s = Math.random() * 40 + 20; 
+  b.style.width = s + 'px'; 
+  b.style.height = s + 'px';
+  b.style.left = Math.random() * 100 + 'vw'; 
+  b.style.animationDelay = Math.random() * 15 + 's';
+  b.style.animationDuration = (Math.random() * 10 + 10) + 's';
+  bCont.appendChild(b);
+}
+</script>
+
 </html>
