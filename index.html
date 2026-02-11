@@ -202,7 +202,7 @@ function makeDrag(el) {
   el.addEventListener('mousedown', s); document.addEventListener('mousemove', m); document.addEventListener('mouseup', () => isD = false);
   el.addEventListener('touchstart', s, {passive: false}); document.addEventListener('touchmove', m, {passive: false}); document.addEventListener('touchend', () => isD = false);
 }
-function dolphinPop(e, el) { e.stopPropagation(); const lines = ["きゅ〜！", "きゅきゅっ", "💞", "💙", "🩵", "💚", "❗", "❔", "🍀"]; const p = el.querySelector('.dolphin-pop'); p.textContent = lines[Math.floor(Math.random() * lines.length)]; p.style.opacity = 1; setTimeout(() => p.style.opacity = 0, 1000); }
+function dolphinPop(e, el) { e.stopPropagation(); const lines = ["きゅ〜！", "きゅきゅっ", "お前を消す方法", "💞", "💙", "🩵", "💚", "❗", "❔", "🍀"]; const p = el.querySelector('.dolphin-pop'); p.textContent = lines[Math.floor(Math.random() * lines.length)]; p.style.opacity = 1; setTimeout(() => p.style.opacity = 0, 1000); }
 function confirmClear(e) { e.stopPropagation(); if(confirm("全部消す？")) { document.querySelectorAll('.xp-window').forEach(w => w.remove()); const vn = document.getElementById('vn-box'); vn.style.display = 'block'; setTimeout(() => { vn.style.display = 'none'; }, 2000); } }
 
 // お寿司ポヨン
